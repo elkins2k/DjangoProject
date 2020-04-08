@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>
+  Chapter
+  <a href="{% url 'chapter_create' %}">
+     (+)
+  </a>
+</h2>
+<ul>
+  {% for chapter in chapters %}
+  <li>
+    <a href="{% url 'chapter_detail' pk=chapter.pk %}">
+      {{ chapter.heading }} - {{ chapter.description}}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% load static %}
+<html>
+  <head>
+    <title>Recipes</title>
+    <link rel="stylesheet" href="{% static 'css/recipes.css' %}">
+  </head>
+  <body>
+    <h1>
+        e.Recipes
+    </h1>
+    <nav>
+      <a href="{% url 'chapter_list' %}">
+          Table of Contents
+      </a>
+      <div class="user-info">
+          {% if user.is_authenticated %}
+              Welcome, {{ user.username }}
+              <a href="{% url 'logout' %}">
+                  Log out
+              </a>
+              {% else %}
+              <a href="{% url 'login' %}">
+                  Login
+              </a>
+                <a href="{% url 'signup' %}">
+                  Signup
+              </a>
+          {% endif %}
+      </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>
+    {{ recipe.name }}
+  </h2>
+  <a href="{% url 'recipe_edit' pk=recipe.pk %}">
+    (edit)
+  </a>
+  <a href="{% url 'recipe_delete' pk=recipe.pk %}">
+    ( - )
+  </a>
+  {% if recipe.image.url != '' %}
+    <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}" class="recipe-image"/>
+  {% endif %}
+  <h3>
+    Ingredients:
+  </h3>
+  <h4>
+    {{ recipe.ingredients }}
+  </h4>
+  <h3>
+    Directions:
+  </h3>
+  <h4>
+    {{ recipe.directions }}
+  </h4>
+  <h5>
+    Chapter: 
+    <a href="{% url 'chapter_detail' pk=recipe.chapter.pk %}">
+      {{ recipe.chapter.heading }}
+    </a>
+  </h5>
+{% endblock %}

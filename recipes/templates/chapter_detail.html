@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>
+    {{ chapter.heading }}
+  </h2>
+  <a href="{% url 'chapter_edit' pk=chapter.pk %}">
+    (edit)
+  </a>
+  <a href="{% url 'chapter_delete' pk=chapter.pk %}">
+    ( - )
+  </a> 
+  <h3>
+    {{ chapter.description }}
+  </h3>
+  {% if chapter.thumbnail.url != '' %}
+    <img src="{{ chapter.thumbnail.url }}" alt="{{ chapter.heading }}" class="chapter-thumbnail" />
+  {% endif %}
+  <h4>
+    Recipes 
+    <a href="{% url 'recipe_create' %}">
+      (+)
+    </a> 
+  </h4>
+  <h5>
+    <ul>
+      {% for recipe in chapter.recipes.all %}
+        <li>
+          <a href="{% url 'recipe_detail' pk=recipe.pk %}">
+            {{ recipe.name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </h5>
+{% endblock %}
