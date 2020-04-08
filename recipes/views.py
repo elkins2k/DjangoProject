@@ -4,7 +4,7 @@ from .forms import ChapterForm, RecipeForm
 from django.contrib.auth.decorators import login_required
 
 def chapter_list(request):
-    chapters = Chapter.objects.all()
+    chapters = Chapter.objects.all().extra(order_by=['heading'])
     return render(request, 'chapter_list.html', {'chapters': chapters})
 
 @login_required
@@ -40,7 +40,7 @@ def chapter_delete(request, pk):
     return redirect('chapter_list')
 
 def recipe_list(request):
-    chapters = Chapter.objects.all()
+    recipes = Recipe.objects.all().extra(order_by=['name'])
 
 @login_required
 def recipe_create(request):
