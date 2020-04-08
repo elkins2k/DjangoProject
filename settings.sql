@@ -1,0 +1,3 @@
+CREATE DATABASE recipes;
+CREATE USER recipesuser WITH PASSWORD 'recipes';
+GRANT ALL PRIVILEGES ON DATABASE recipes TO recipesuser;
