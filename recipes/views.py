@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect
 from .models import Chapter, Recipe
 from .forms import ChapterForm, RecipeForm
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+
 
 def chapter_list(request):
-    chapters = Chapter.objects.all().extra(order_by=['heading'])
+    chapters = Chapter.objects.all().order_by('heading')
     return render(request, 'chapter_list.html', {'chapters': chapters})
 
 @login_required
@@ -40,7 +43,8 @@ def chapter_delete(request, pk):
     return redirect('chapter_list')
 
 def recipe_list(request):
-    recipes = Recipe.objects.all().extra(order_by=['name'])
+    recipes = Recipe.objects.all().order_by('name')
+    return render(request, 'recipe_list.html', {'recipes': recipes})
 
 @login_required
 def recipe_create(request):
