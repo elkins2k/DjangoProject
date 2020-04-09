@@ -29,7 +29,7 @@ SOCIAL_AUTH_GITHUB_SECRET=os.getenv('SOCIAL_AUTH_GITHUB_SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://taste-e.herokuapp.com']
+ALLOWED_HOSTS = ['https://taste-e.herokuapp.com','localhost']
 
 LOGIN_REDIRECT_URL = '/'
 
