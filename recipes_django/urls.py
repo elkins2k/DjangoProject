@@ -13,22 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.conf import settings
-from django.urls import path, include
+from django.conf.urls import include, url
 from django.conf.urls.static import static
-from django.contrib.auth import views as auth_views
-
-urlpatterns = [
-  path('admin/', admin.site.urls),
-  path('', include('recipes.urls')),
-  path('', include('accounts.urls')),
-  path('', include('social_django.urls', namespace='social')),
-]
+from django.contrib import admin
+from django.urls import path
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = ''
+
+urlpatterns = [
+  url(r'^oauth/', include('social_django.urls', namespace='social')),
+  path('admin/', admin.site.urls),
+  path('', include('recipes.urls')),
+  path('', include('accounts.urls')),
+  
+]
 
 if settings.DEBUG:
   urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
+from dotenv import load_dotenv
+load_dotenv()
 
 import os
 
@@ -19,7 +21,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'h^u&6$)clwnt0w_w-jdoeyh-o(13)_vi+9524s52er(@!9swj('
+SECRET_KEY=os.getenv('SECRET_KEY')
+
+SOCIAL_AUTH_GITHUB_KEY=os.getenv('SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET=os.getenv('SOCIAL_AUTH_GITHUB_SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,6 +46,9 @@ INSTALLED_APPS = [
     'django_extensions',
     'accounts',
     'social_django',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'oauth2_provider',
 ]
 
 MIDDLEWARE = [
@@ -91,7 +99,16 @@ DATABASES = {
     }
 }
 
-
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
