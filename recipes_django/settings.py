@@ -178,3 +178,14 @@ else:
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), ]
+
+SECRET_KEY = 'h^u&6$)clwnt0w_w-jdoeyh-o(13)_vi+9524s52er(@!9swj('
+
+# https://github.com/settings/applications/1263197
+SOCIAL_AUTH_GITHUB_KEY='8439d21383ad2fa8eec7'
+SOCIAL_AUTH_GITHUB_SECRET='42a1fce2f4625136fb749e44030aab0fd5d34c31'
+
+AWS_ACCESS_KEY_ID='AKIA5L7SF5T5K3734GFD'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME='taste.e'
+USE_S3=TRUE
